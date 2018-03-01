@@ -3,7 +3,7 @@ module RSA where
 {- Import Packages -}
 import Control.Monad.Fix
 import Data.Bits
-import Data.Char (ord)
+import Data.Char (ord, chr)
 import Math.NumberTheory.Primes.Testing
 import System.Random
 
@@ -25,12 +25,16 @@ strToInt input | length input == 0 = error "Input length is blank"
 
 -- Roll the converted list down to [1..26]
 reduceIntString :: [Int] -> [Int]
-reduceIntString input = map ((-96) + ) input
+reduceIntString input = map ((-95) + ) input
 
 processString :: [Char] -> [Int]
 processString input = reduceIntString (strToInt input)
 
-{- Backend functions -}
+-- Revert ints back to letters
+processInts :: [Integer] -> [Char]
+processInts input = map chr (map fromIntegral (map (+95) input))
+
+{- Backend mathematical functions -}
 -- Extended Euclidean algorithm for the GCD of a and b, ax+by
   -- (GCD, x, y)
 eGCD :: Integer -> Integer -> (Integer,Integer,Integer)
