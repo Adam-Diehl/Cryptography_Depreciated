@@ -32,4 +32,5 @@ factors n | n < 1 = error "Argument not positive"
 
 -- Count the Sylow p-Subgroups: n = integer, p = prime
 countSylowPSubs :: Integer -> Integer -> [Integer]
-countSylowPSubs n p = [x | x <- [1..n], divides x n, x `mod` p == 1]
+countSylowPSubs n p | divides p n = [x | x <- [1..n], divides x n, x `mod` p == 1]
+                    | otherwise = error "p must divide the order of the group" 
