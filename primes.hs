@@ -1,3 +1,5 @@
+import Math.NumberTheory.Primes.Testing
+
 {- Basic primality and division functions -}
 -- Definition of divisibility
   -- d divides n if the remainder of n/d = 0
@@ -33,4 +35,4 @@ factors n | n < 1 = error "Argument not positive"
 -- Count the Sylow p-Subgroups: n = integer, p = prime
 countSylowPSubs :: Integer -> Integer -> [Integer]
 countSylowPSubs n p | divides p n = [x | x <- [1..n], divides x n, x `mod` p == 1]
-                    | otherwise = error "p must divide the order of the group" 
+                    | otherwise = error "p must divide the order of the group"
